@@ -1,6 +1,8 @@
 import React from "react"
 import mapboxgl from "mapbox-gl"
 import Layout from "../components/layout"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 
@@ -11,10 +13,11 @@ class Map extends React.Component {
       container: this.mapContainer,
       style: "mapbox://styles/mapbox/streets-v11",
     })
+    AOS.init()
   }
 
   componentWillUnmount() {
-    this.map.remove()
+    this.map.remove();
   }
 
   render() {
@@ -27,7 +30,13 @@ class Map extends React.Component {
 
     return(
       <Layout>
-     <div style={{height:'400px', position:'relative'}}><div style={style} ref={el => (this.mapContainer = el)}></div></div> 
+     <div data-aos="fade-up"
+    data-aos-offset="200"
+    data-aos-delay="50"
+    data-aos-easing="ease-in-out"
+    data-aos-mirror="true"
+    data-aos-once="false"
+    data-aos-anchor-placement="top-center" style={{height:'400px', position:'relative'}}><div style={style} ref={el => (this.mapContainer = el)}></div></div> 
      </Layout>
     )
     
