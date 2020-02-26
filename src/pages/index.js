@@ -1,9 +1,16 @@
 import React, { Component } from "react"
 import ReactMapGL from "react-map-gl"
 import StickyBox from "react-sticky-box";
+import Select from 'react-select';
 
 const MAPBOX_TOKEN ="pk.eyJ1Ijoic2hpdnJhanNoYXJtYTIxIiwiYSI6ImNrNzIzNjlxbzA1MngzZm53dGxrbXVheGIifQ.d5HraeRq8vDh-0nBiRGuhA"
-  
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+];
+
 class Map extends Component {
   constructor(props) {
     super(props)
@@ -15,10 +22,19 @@ class Map extends Component {
         longitude: -122.4376,
         zoom: 12,
       },
+      selectedOption: null,
+      
     }
   }
+  handleChange = selectedOption => {
+    this.setState(
+      { selectedOption },
+      () => console.log(`Option selected:`, this.state.selectedOption)
+    );
+  };
 
   render() {
+    const { selectedOption } = this.state;
     return (
       <>
         <ReactMapGL
@@ -30,7 +46,11 @@ class Map extends Component {
     <StickyBox offsetTop={20} offsetBottom={20}>
       <div>https://react-sticky-box.codecks.io/examples-complex</div>
     </StickyBox>
-    <div>Content</div>
+    <div><Select
+        value={selectedOption}
+        onChange={this.handleChange}
+        options={options}
+      /></div>
   </div>
       </>
     )
