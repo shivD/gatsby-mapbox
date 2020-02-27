@@ -45,6 +45,7 @@ class Map extends Component {
       <div className="row" style={{display:'flex', width:'100%'}}>
     <StickyBox offsetTop={20} offsetBottom={20}>
       <div>https://react-sticky-box.codecks.io/examples-complex</div>
+      http://jsfiddle.net/danield770/hwpa0uk1/9/
     </StickyBox>
     <div><Select
         value={selectedOption}
